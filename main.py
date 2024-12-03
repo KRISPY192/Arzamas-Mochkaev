@@ -2011,7 +2011,7 @@ from PyQt6.QtWidgets import QApplication, QMainWindow
 class Main(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.initUI()
         print(456)
         self.pushButton.clicked.connect(self.run)
         print(56)
@@ -2034,9 +2034,12 @@ class Main(QMainWindow):
 
     def draw(self):
         R = randint(20, 100)
-        self.qp.setBrush(QColor(255, 255, 0))
+        self.qp.setBrush(QColor(*[randint(0, 255) for _ in range(3)]))
         self.qp.drawEllipse(QPointF(randint(20, 700),
                                     randint(20, 500)), R, R)
+
+    def initUI(self):
+        uic.loadUi('UI.ui', self)
 
 
 if __name__ == '__main__':
